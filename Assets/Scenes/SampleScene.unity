@@ -180,11 +180,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 53633737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481d10132d238d24daa0011f484fbec0, type: 3}
+  m_Script: {fileID: 11500000, guid: bf6a85f3062056740b870d70b10778a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 0.5
-  enemy: {fileID: 7840058673953041884, guid: e2c361ee094b51c478a03156495d35f6, type: 3}
+  entity: {fileID: 7840058673953041884, guid: e2c361ee094b51c478a03156495d35f6, type: 3}
+  spawnRateMin: 0.5
+  spawnRateMax: 2
+  angleMin: 180
+  angleMax: 180
+  scaleMin: 1
+  scaleMax: 1
 --- !u!4 &53633739
 Transform:
   m_ObjectHideFlags: 0
@@ -384,6 +389,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &416704283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416704285}
+  - component: {fileID: 416704284}
+  m_Layer: 0
+  m_Name: AsteroidSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &416704284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416704283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6a85f3062056740b870d70b10778a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 1894038564745377524, guid: c9736aa36e4636749919d6d2f24f1a04, type: 3}
+  spawnRateMin: 1
+  spawnRateMax: 3
+  angleMin: 0
+  angleMax: 360
+  scaleMin: 0.05
+  scaleMax: 0.2
+--- !u!4 &416704285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416704283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &457914182
 GameObject:
@@ -849,9 +905,9 @@ MonoBehaviour:
   currentHealth: 0
   destroyParticles: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
   hitMaterial: {fileID: 2100000, guid: c83f99feec95a94409189db4892422ad, type: 2}
-  moveSpeed: 5
+  moveSpeed: 8
   bulletPrefab: {fileID: 3212775835760928640, guid: 5dba852ba26287d439d36039fb891beb, type: 3}
-  fireRate: 0.2
+  fireRate: 0.15
   bulletSpawn: {fileID: 7759990}
   hpBar: {fileID: 1536840216}
   hpBarSprites:
@@ -934,6 +990,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536840214}
   m_CullTransparentMesh: 1
+--- !u!1 &1633264282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633264283}
+  - component: {fileID: 1633264284}
+  m_Layer: 0
+  m_Name: Game Master
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1633264283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633264282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1633264284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633264282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af4a8a4c21371a43a1fb959d4d6ec5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1802027223 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6437794657410246643, guid: 49b25b8515aefc04b9512d6eccd1c074, type: 3}
