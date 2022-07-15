@@ -30,14 +30,4 @@ public class Bullet : Entity {
             Hit(1);
         }
     }
-
-    bool teleportable = true;
-    public bool Teleportable {
-        get {
-            return teleportable;
-        }
-        set {
-            teleportable = value;
-        }
-    }
 }
