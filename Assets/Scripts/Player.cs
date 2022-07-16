@@ -20,14 +20,20 @@ public class Player : Entity {
     public Image hpBar;
     public Sprite[] hpBarSprites;
 
+    public bool canMove = false;
+
+    public GameMaster gameMaster;
+
     public override void Start() {
         base.Start();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update() {
-        Movement();
-        Weapons();
+        if (canMove) {
+            Movement();
+            Weapons();
+        }
     }
 
     void Movement() {
@@ -55,5 +61,8 @@ public class Player : Entity {
     public override void Hit(int damageAmount) {
         base.Hit(damageAmount);
         hpBar.sprite = hpBarSprites[currentHealth];
+        if (currentHealth <= 0) {
+            gameMaster.RestartGame();
+        }
     }
 }

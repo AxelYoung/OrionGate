@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-    Animator animator;
+    public GameMaster gameMaster;
 
-    void Start() {
-        animator = GetComponent<Animator>();
-    }
+    Animator animator { get { return GetComponent<Animator>(); } }
+
+    public Animator[] startEvents;
+
+    bool played = false;
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && !played) {
             animator.SetTrigger("Start");
+            Invoke("PlayStartEvents", 1.85f);
+            played = true;
         }
     }
+
+    void PlayStartEvents() {
+        foreach (Animator eventAnimator in startEvents) {
+            eventAnimator.SetTrigger("Start");
+        }
+        Invoke("StartGame", 2);
+    }
+
+    void StartGame() { gameMaster.StartGame(); }
 }
