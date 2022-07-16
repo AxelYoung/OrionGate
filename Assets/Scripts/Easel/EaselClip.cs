@@ -8,12 +8,14 @@ public class EaselClip : ScriptableObject {
 
     public string name;
     public Segment[] segments;
+    public bool loop;
 }
 
 [System.Serializable]
 public struct Segment {
     public Sprite[] sprites;
     public float length;
+    public AnimationCurve ease;
 
-    public float frameLength { get { return sprites.Length / length; } }
+    public float frameLength { get { return length / sprites.Length; } }
 }

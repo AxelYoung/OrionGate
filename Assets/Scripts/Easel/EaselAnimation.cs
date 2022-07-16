@@ -13,7 +13,13 @@ public class EaselAnimation : MonoBehaviour {
     int currentSegmentIndex;
     Sprite currentSprite { get { return currentSegment.sprites[currentSpriteIndex]; } }
     int currentSpriteIndex;
-    float frameTime;
+    float currentFrameLength {
+        get {
+            return Ease.linear(currentSpriteIndex + 1, currentSegment.sprites.Length, 1);
+        }
+    }
+
+    float totalFrameTime;
 
     int renderer;
     SpriteRenderer spriteRenderer;
@@ -29,18 +35,23 @@ public class EaselAnimation : MonoBehaviour {
 
     void Update() {
         if (playing) {
-            frameTime += Time.deltaTime;
-            if (frameTime >= currentSegment.frameLength) {
-                frameTime = 0;
+            totalFrameTime += Time.deltaTime;
+            if (totalFrameTime >= currentFrameLength) {
                 currentSpriteIndex++;
                 if (currentSpriteIndex < currentSegment.sprites.Length) {
                     SwapSprite(currentSprite);
                 } else {
                     currentSegmentIndex++;
+                    totalFrameTime = 0;
                     if (currentSegmentIndex < currentClip.segments.Length) {
+                        currentSpriteIndex = 0;
                         SwapSprite(currentSprite);
                     } else {
-                        playing = false;
+                        if (currentClip.loop) {
+                            PlayClip(0);
+                        } else {
+                            playing = false;
+                        }
                     }
                 }
             }
@@ -52,7 +63,7 @@ public class EaselAnimation : MonoBehaviour {
         currentClip = clips[index];
         currentSegmentIndex = 0;
         currentSpriteIndex = 0;
-        frameTime = 0;
+        totalFrameTime = 0;
         SwapSprite(currentSprite);
     }
 
@@ -80,5 +91,18 @@ public class EaselAnimation : MonoBehaviour {
                 break;
         }
     }
+}
 
+public static class Ease {
+
+    public static float linear(float input, float destination, float rateOfChange) {
+        return rateOfChange * input / destination;
+    }
+
+    public static float inOutCubic(float input, float destination, float rateOfChange) {
+        input /= destination / 2;
+        if (input < 1) return rateOfChange / 2 * input * input * input;
+        input -= 2;
+        return rateOfChange / 2 * (input * input * input + 2);
+    }
 }
