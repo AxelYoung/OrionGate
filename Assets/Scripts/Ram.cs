@@ -11,16 +11,23 @@ public class Ram : Entity {
 
     Player player;
     Rigidbody2D rigidbody;
+    SpriteRenderer renderer;
+    TrailRenderer trailRenderer;
 
     public override void Start() {
         base.Start();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
+        renderer = GetComponent<SpriteRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update() {
+        renderer.color = GameMaster.instance.activeTheme;
+        trailRenderer.startColor = Color.HSVToRGB(GameMaster.instance.activeThemeHSV.r, GameMaster.instance.activeThemeHSV.g, 0.9f);
+        trailRenderer.endColor = Color.HSVToRGB(GameMaster.instance.activeThemeHSV.r, GameMaster.instance.activeThemeHSV.g, 0.9f);
         if (Vector2.Dot((player.transform.position - transform.position).normalized, Vector2.down) > 0.75f) {
             if (player.transform.position.x - transform.position.x < -trackingDeadzone) {
                 rigidbody.velocity = new Vector2(-trackingSpeed, -speed / 1.5f);

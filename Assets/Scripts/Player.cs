@@ -22,14 +22,25 @@ public class Player : Entity {
 
     public bool canMove = false;
 
-    public GameMaster gameMaster;
+    SpriteRenderer renderer;
+    TrailRenderer trailRendererL;
+    TrailRenderer trailRendererR;
 
     public override void Start() {
         base.Start();
         rigidbody = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
+        trailRendererL = transform.GetChild(0).GetComponent<TrailRenderer>();
+        trailRendererR = transform.GetChild(1).GetComponent<TrailRenderer>();
     }
 
     void Update() {
+        hpBar.color = GameMaster.instance.activeTheme;
+        renderer.color = GameMaster.instance.activeTheme;
+        trailRendererL.startColor = Color.HSVToRGB(GameMaster.instance.activeThemeHSV.r, GameMaster.instance.activeThemeHSV.g, 0.9f);
+        trailRendererR.startColor = Color.HSVToRGB(GameMaster.instance.activeThemeHSV.r, GameMaster.instance.activeThemeHSV.g, 0.9f);
+        trailRendererL.endColor = Color.HSVToRGB(GameMaster.instance.activeThemeHSV.r, GameMaster.instance.activeThemeHSV.g, 0.9f);
+        trailRendererR.endColor = Color.HSVToRGB(GameMaster.instance.activeThemeHSV.r, GameMaster.instance.activeThemeHSV.g, 0.9f);
         if (canMove) {
             Movement();
             Weapons();
@@ -62,7 +73,7 @@ public class Player : Entity {
         base.Hit(damageAmount);
         hpBar.sprite = hpBarSprites[currentHealth];
         if (currentHealth <= 0) {
-            gameMaster.RestartGame();
+            GameMaster.instance.RestartGame();
         }
     }
 }

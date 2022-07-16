@@ -2,15 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour {
+
+    public static GameMaster instance { get; private set; }
 
     public Player player;
     public GateGun gateGun;
     public WaveSpawner waveSpawner;
 
-    // Update is called once per frame
+    public int volume;
+
+    public int activeThemeIndex = 0;
+    public Color[] themes;
+
+    public Color activeTheme { get { return themes[activeThemeIndex]; } }
+    public Color activeThemeHSV {
+        get {
+            Color hsv = new Color();
+            Color.RGBToHSV(activeTheme, out hsv.r, out hsv.g, out hsv.b);
+            return hsv;
+        }
+    }
+
+    public Image border;
+    public SpriteRenderer background;
+
+    float rainbowTime;
+    public float rainbowSpeedMultipler;
+
+    void Awake() {
+        if (instance != null && instance != this) {
+            Destroy(this);
+        } else {
+            instance = this;
+        }
+    }
+
     void Update() {
+        SetRainbow();
+        border.color = activeTheme;
+        background.color = activeTheme;
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -29,5 +62,13 @@ public class GameMaster : MonoBehaviour {
 
     void Reload() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void SetRainbow() {
+        rainbowTime += Time.deltaTime * rainbowSpeedMultipler;
+        themes[themes.Length - 1] = Color.HSVToRGB(rainbowTime, 1, 1);
+        if (rainbowTime >= 1) {
+            rainbowTime = 0;
+        }
     }
 }
