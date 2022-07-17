@@ -48,7 +48,7 @@ public class Player : Entity {
         if (Input.GetKey(KeyCode.Space)) {
             bulletTimer += Time.deltaTime;
             if (bulletTimer >= fireRate) {
-                Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
+                Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
                 bulletTimer = 0f;
             }
         } else {

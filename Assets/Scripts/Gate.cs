@@ -15,6 +15,7 @@ public class Gate : MonoBehaviour {
                 if (teleportObj.Teleportable) {
                     Vector3 offset = new Vector2(transform.position.x - collision.transform.position.x, 0);
                     collision.transform.position = alternateGate.transform.position - offset;
+                    collision.transform.rotation = alternateGate.transform.rotation;
                     objectsEntered.Add(collision.gameObject);
                     teleportObj.Teleportable = false;
                 }

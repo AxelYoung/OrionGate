@@ -9,9 +9,11 @@ public class Bullet : Entity {
 
     float lifetime;
 
+    Rigidbody2D rigidbody;
+
     public override void Start() {
         base.Start();
-        GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update() {
@@ -19,6 +21,7 @@ public class Bullet : Entity {
         if (lifetime >= lifespan) {
             Destroy(gameObject);
         }
+        rigidbody.velocity = transform.up * speed;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {

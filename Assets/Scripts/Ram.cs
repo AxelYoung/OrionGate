@@ -23,14 +23,14 @@ public class Ram : Entity {
     void Update() {
         if (Vector2.Dot((player.transform.position - transform.position).normalized, Vector2.down) > 0.75f) {
             if (player.transform.position.x - transform.position.x < -trackingDeadzone) {
-                rigidbody.velocity = new Vector2(-trackingSpeed, -speed / 1.5f);
+                rigidbody.velocity = (transform.up * (speed / 1.5f)) + -(transform.right * trackingSpeed);
             } else if (player.transform.position.x - transform.position.x > trackingDeadzone) {
-                rigidbody.velocity = new Vector2(trackingSpeed, -speed / 1.5f);
+                rigidbody.velocity = (transform.up * (speed / 1.5f)) + (transform.right * trackingSpeed);
             } else {
-                rigidbody.velocity = new Vector2(0, -speed);
+                rigidbody.velocity = transform.up * speed;
             }
         } else {
-            rigidbody.velocity = new Vector2(0, -speed);
+            rigidbody.velocity = transform.up * speed;
         }
     }
 

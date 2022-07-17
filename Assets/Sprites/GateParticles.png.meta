@@ -121,10 +121,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.44444445}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: GateParticles_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 16
         y: 0
-        width: 20
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.44444445}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,12 +161,12 @@ TextureImporter:
       name: GateParticles_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 32
         y: 0
-        width: 20
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.44444445}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +182,12 @@ TextureImporter:
       name: GateParticles_3
       rect:
         serializedVersion: 2
-        x: 60
+        x: 48
         y: 0
-        width: 20
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.44444445}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: GateParticles_4
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 0
-        width: 20
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.44444445}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: GateParticles_5
       rect:
         serializedVersion: 2
-        x: 100
+        x: 80
         y: 0
-        width: 20
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.44444445}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -237,6 +237,48 @@ TextureImporter:
       bones: []
       spriteID: 7963daa2e668b2d46942a32d2e9f15d2
       internalID: -1379470647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GateParticles_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 701820c6712daee46ab3e87a1065bf91
+      internalID: 1898842035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GateParticles_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fec9a0a4834cfff4c8cc70752f1d6913
+      internalID: -2080232251
       vertices: []
       indices: 
       edges: []
@@ -255,6 +297,8 @@ TextureImporter:
       GateParticles_2: 1388572032
       GateParticles_3: 1545701554
       GateParticles_1: 890118323
+      GateParticles_6: 1898842035
+      GateParticles_7: -2080232251
       GateParticles_5: -1379470647
       GateParticles_4: 2097039619
       GateParticles_0: -1319176414
