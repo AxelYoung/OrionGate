@@ -100,12 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9b9b67041da0a4b82e5e9553b5c852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 1
   currentHealth: 0
   destroyParticles: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
-  speed: 8
+  speed: 12
   trackingSpeed: 3
-  trackingDeadzone: 0.5
+  trackingDeadzone: 0.25
 --- !u!50 &7840058673953041872
 Rigidbody2D:
   serializedVersion: 4
