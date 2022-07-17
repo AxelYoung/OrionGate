@@ -8,19 +8,6 @@ public class Gate : MonoBehaviour {
 
     List<GameObject> objectsEntered = new List<GameObject>();
 
-    SpriteRenderer renderer;
-    SpriteRenderer particleRenderer;
-
-    void Start() {
-        renderer = GetComponent<SpriteRenderer>();
-        particleRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-    }
-
-    void Update() {
-        renderer.color = GameMaster.instance.activeTheme;
-        particleRenderer.color = GameMaster.instance.activeTheme;
-    }
-
     void OnTriggerEnter2D(Collider2D collision) {
         if (alternateGate.gameObject.activeSelf) {
             ITeleportable teleportObj = collision.GetComponent<ITeleportable>();

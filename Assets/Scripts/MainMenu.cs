@@ -31,13 +31,11 @@ public class MainMenu : MonoBehaviour {
     bool verticalPressed = false;
     bool horizontalPressed = false;
 
-    void Start() { image = GetComponent<Image>(); }
+    void Start() {
+        image = GetComponent<Image>();
+    }
 
     void Update() {
-        image.color = GameMaster.instance.activeTheme;
-        volume.color = GameMaster.instance.activeTheme;
-        theme.color = GameMaster.instance.activeTheme;
-        back.color = GameMaster.instance.activeTheme;
         if (!played) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 if (activeMenu == 0) {

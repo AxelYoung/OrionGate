@@ -18,16 +18,8 @@ public class GameMaster : MonoBehaviour {
     public Color[] themes;
 
     public Color activeTheme { get { return themes[activeThemeIndex]; } }
-    public Color activeThemeHSV {
-        get {
-            Color hsv = new Color();
-            Color.RGBToHSV(activeTheme, out hsv.r, out hsv.g, out hsv.b);
-            return hsv;
-        }
-    }
 
-    public Image border;
-    public SpriteRenderer background;
+    public RawImage renderTexture;
 
     float rainbowTime;
     public float rainbowSpeedMultipler;
@@ -42,8 +34,7 @@ public class GameMaster : MonoBehaviour {
 
     void Update() {
         SetRainbow();
-        border.color = activeTheme;
-        background.color = activeTheme;
+        renderTexture.color = activeTheme;
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

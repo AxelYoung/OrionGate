@@ -23,7 +23,6 @@ public class Entity : MonoBehaviour, ITeleportable {
         if (currentHealth <= 0) {
             Destroy(gameObject);
             GameObject particles = Instantiate(destroyParticles, transform.position, Quaternion.identity);
-            particles.GetComponent<ParticleSystem>().startColor = GameMaster.instance.activeTheme;
         } else {
             StartCoroutine(HitAnimation());
         }
