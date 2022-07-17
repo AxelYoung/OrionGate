@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GateGun : MonoBehaviour {
 
@@ -12,16 +13,21 @@ public class GateGun : MonoBehaviour {
 
     public bool canUse = false;
 
+    public RawImage renderTexture;
+
+    public Camera displayCamera;
+    public Camera renderCamera;
+
     void Update() {
         if (canUse) {
             if (Input.GetKeyDown(KeyCode.Mouse0)) {
-                leftGatePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                leftGatePosition = MouseToWorldSpace();
                 leftGate.transform.position = leftGatePosition;
                 if (!leftGate.gameObject.activeSelf) leftGate.gameObject.SetActive(true);
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1)) {
-                rightGatePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                rightGatePosition = MouseToWorldSpace();
                 rightGate.transform.position = rightGatePosition;
                 if (!rightGate.gameObject.activeSelf) rightGate.gameObject.SetActive(true);
             }
@@ -31,5 +37,12 @@ public class GateGun : MonoBehaviour {
                 if (rightGate.gameObject.activeSelf) rightGate.gameObject.SetActive(false);
             }
         }
+    }
+
+    Vector2 MouseToWorldSpace() {
+        Vector2 point;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(renderTexture.rectTransform, Input.mousePosition, null, out point);
+        point /= 8;
+        return point;
     }
 }

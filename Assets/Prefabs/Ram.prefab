@@ -103,7 +103,6 @@ MonoBehaviour:
   maxHealth: 2
   currentHealth: 0
   destroyParticles: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
-  hitMaterial: {fileID: 2100000, guid: c83f99feec95a94409189db4892422ad, type: 2}
   speed: 8
   trackingSpeed: 3
   trackingDeadzone: 0.5

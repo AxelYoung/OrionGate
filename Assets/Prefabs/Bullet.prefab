@@ -103,10 +103,8 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   destroyParticles: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
-  hitMaterial: {fileID: 0}
   speed: 15
   lifespan: 2
-  bulletHitParticle: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
 --- !u!50 &-4971661989385303757
 Rigidbody2D:
   serializedVersion: 4

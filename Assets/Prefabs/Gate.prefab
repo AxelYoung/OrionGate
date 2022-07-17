@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6437794657410246643}
   - component: {fileID: 6437794657410246655}
   - component: {fileID: 3682188249279654320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alternateGate: {fileID: 0}
-  teleportParticle: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
 --- !u!95 &6437794657410246655
 Animator:
   serializedVersion: 4
@@ -139,7 +138,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.4}
-    oldSize: {x: 1.5555556, y: 0.5555556}
+    oldSize: {x: 1.75, y: 0.625}
     newSize: {x: 1.5555556, y: 0.5555556}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -171,7 +170,7 @@ GameObject:
   - component: {fileID: 6437794657519198218}
   - component: {fileID: 6437794657519198217}
   - component: {fileID: 6437794657519198216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GateParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

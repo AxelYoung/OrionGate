@@ -10,19 +10,62 @@ public class BackgroundManager : MonoBehaviour {
 
     public Collider2D viewport;
 
+    public float driftingMultiplier;
+
+    public float spawnHeightMin;
+    public float spawnHeightMax;
+    public float horizontalSpawnTolerance;
+
     void Start() {
         goalAmounts = new int[asteroids.Length];
         for (int i = 0; i < asteroids.Length; i++) {
-            Asteroids currentType = asteroids[i];
             asteroidsInScene.Add(new List<GameObject>());
-            goalAmounts[i] = Random.Range(currentType.minAmount, currentType.maxAmount);
+            goalAmounts[i] = Random.Range(asteroids[i].minAmount, asteroids[i].maxAmount);
             for (int j = 0; j < goalAmounts[i]; j++) {
-                Sprite sprite = currentType.sprites[Random.Range(0, currentType.sprites.Length)];
-                float xPosition = Random.Range(-viewport.bounds.extents.x, viewport.bounds.extents.x);
+                Sprite sprite = asteroids[i].sprites[Random.Range(0, asteroids[i].sprites.Length)];
+
+                float xPosition = Random.Range(-viewport.bounds.extents.x - horizontalSpawnTolerance, viewport.bounds.extents.x + horizontalSpawnTolerance);
                 float yPosition = Random.Range(-viewport.bounds.extents.y, viewport.bounds.extents.y);
                 Vector3 position = new Vector3(xPosition, yPosition) + viewport.bounds.center;
-                float speed = Random.Range(currentType.minSpeed, currentType.maxSpeed);
-                asteroidsInScene[i].Add(NewAsteroid(sprite, currentType.orderInLayer, position, speed));
+
+                float speed = Random.Range(asteroids[i].minSpeed, asteroids[i].maxSpeed);
+                asteroidsInScene[i].Add(NewAsteroid(sprite, asteroids[i].orderInLayer, position, speed));
+            }
+        }
+    }
+
+    void Update() {
+        for (int i = 0; i < asteroids.Length; i++) {
+            if (asteroidsInScene[i].Count < goalAmounts[i]) {
+                for (int j = 0; j < goalAmounts[i] - asteroidsInScene[i].Count; j++) {
+                    Sprite sprite = asteroids[i].sprites[Random.Range(0, asteroids[i].sprites.Length)];
+
+                    float xPosition = Random.Range(-viewport.bounds.extents.x - horizontalSpawnTolerance, viewport.bounds.extents.x + horizontalSpawnTolerance);
+                    float yPosition = viewport.bounds.extents.y + sprite.bounds.max.y + Random.Range(spawnHeightMin, spawnHeightMax);
+                    Vector3 position = new Vector3(xPosition, yPosition) + viewport.bounds.center;
+
+                    float speed = Random.Range(asteroids[i].minSpeed, asteroids[i].maxSpeed);
+                    asteroidsInScene[i].Add(NewAsteroid(sprite, asteroids[i].orderInLayer, position, speed));
+                }
+            }
+        }
+
+        for (int i = 0; i < asteroidsInScene.Count; i++) {
+            Queue<int> outOfBoundsIndexes = new Queue<int>();
+            for (int j = 0; j < asteroidsInScene[i].Count; j++) {
+                Vector2 position = asteroidsInScene[i][j].transform.position;
+                float halfHeight = asteroidsInScene[i][j].GetComponent<SpriteRenderer>().sprite.bounds.max.y;
+                if (position.y < -viewport.bounds.extents.y - halfHeight) {
+                    outOfBoundsIndexes.Enqueue(j);
+                }
+            }
+
+            if (outOfBoundsIndexes.Count > 0) {
+                foreach (int outOfBoundsIndex in outOfBoundsIndexes) {
+                    Destroy(asteroidsInScene[i][outOfBoundsIndex]);
+                    asteroidsInScene[i].RemoveAt(outOfBoundsIndex);
+                }
+                goalAmounts[i] = Random.Range(asteroids[i].minAmount, asteroids[i].maxAmount);
             }
         }
     }
@@ -31,16 +74,18 @@ public class BackgroundManager : MonoBehaviour {
         GameObject asteroid = new GameObject("Asteroid");
         asteroid.transform.position = position;
         asteroid.transform.parent = transform;
+        asteroid.layer = 8;
+
         SpriteRenderer renderer = asteroid.AddComponent<SpriteRenderer>();
         renderer.sprite = sprite;
         renderer.sortingOrder = orderInLayer;
         renderer.flipX = Random.Range(0, 2) == 0 ? true : false;
         renderer.flipY = Random.Range(0, 2) == 0 ? true : false;
+
         Rigidbody2D rigidbody = asteroid.AddComponent<Rigidbody2D>();
         rigidbody.isKinematic = true;
-        rigidbody.velocity = new Vector2(Random.Range(-speed / 10f, speed / 10f), -speed);
-        BoxCollider2D collider = asteroid.AddComponent<BoxCollider2D>();
-        collider.isTrigger = true;
+        rigidbody.velocity = new Vector2(Random.Range(-speed * driftingMultiplier, speed * driftingMultiplier), -speed);
+
         return asteroid;
     }
 
