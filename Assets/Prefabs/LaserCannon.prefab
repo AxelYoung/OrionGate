@@ -282,3 +282,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   laserPrefab: {fileID: 501402380419762941, guid: 467617f6b9fd2614e9c9983208012ef2, type: 3}
+  main: 1
