@@ -36,7 +36,6 @@ public class Ram : Entity {
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject == player.gameObject) {
-            //Instantiate(bulletHitParticle, transform.position, Quaternion.identity);
             player.Hit(1);
             Hit(maxHealth);
         }

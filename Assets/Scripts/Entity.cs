@@ -22,7 +22,8 @@ public class Entity : MonoBehaviour, ITeleportable {
         currentHealth -= damageAmount;
         if (currentHealth <= 0) {
             Destroy(gameObject);
-            GameObject particles = Instantiate(destroyParticles, transform.position, Quaternion.identity);
+            Explode();
+            //GameObject particles = Instantiate(destroyParticles, transform.position, Quaternion.identity);
         } else {
             StartCoroutine(HitAnimation());
         }
@@ -50,6 +51,8 @@ public class Entity : MonoBehaviour, ITeleportable {
         }
         newTexture.Apply();
         Sprite sprite = Sprite.Create(newTexture, new Rect(0.0f, 0.0f, newTexture.width, newTexture.height), new Vector2(0.5f, 0.5f), 8);
+        print(currentSprite.pivot);
+        print(sprite.pivot);
         return sprite;
     }
 
@@ -61,5 +64,42 @@ public class Entity : MonoBehaviour, ITeleportable {
         set {
             teleportable = value;
         }
+    }
+
+    void Explode() {
+        GameObject explosion = new GameObject("Explosion");
+        explosion.transform.position = transform.position;
+        Texture2D texture = renderer.sprite.texture;
+        for (int x = 0; x < texture.width; x++) {
+            for (int y = 0; y < texture.height; y++) {
+                Color pixel = texture.GetPixel(x, y);
+                if (pixel.a != 0) {
+                    GenerateChunk(x, y, pixel, explosion.transform);
+                }
+            }
+        }
+        explosion.transform.rotation = transform.rotation;
+    }
+
+    void GenerateChunk(float x, float y, Color color, Transform parent) {
+        GameObject chunk = new GameObject();
+        chunk.transform.parent = parent;
+        chunk.transform.localPosition = new Vector3(x / 8f, y / 8f);
+        chunk.layer = 8;
+
+        Texture2D chunkTexture = new Texture2D(1, 1);
+        chunkTexture.SetPixel(0, 0, Color.white);
+        chunkTexture.filterMode = FilterMode.Point;
+        chunkTexture.Apply();
+
+        SpriteRenderer chunkRenderer = chunk.AddComponent<SpriteRenderer>();
+        chunkRenderer.sprite = Sprite.Create(chunkTexture, new Rect(0.0f, 0.0f, chunkTexture.width, chunkTexture.height), new Vector2(0.5f, 0.5f), 8);
+        chunkRenderer.color = color;
+
+        Rigidbody2D rigidbody = chunk.AddComponent<Rigidbody2D>();
+        rigidbody.velocity = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+        rigidbody.isKinematic = true;
+
+        chunk.AddComponent<Chunk>();
     }
 }
