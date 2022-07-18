@@ -21,11 +21,12 @@ public class Ram : Entity {
     }
 
     void Update() {
-        if (Vector2.Dot((player.transform.position - transform.position).normalized, Vector2.down) > 0.75f) {
-            if (player.transform.position.x - transform.position.x < -trackingDeadzone) {
-                rigidbody.velocity = (transform.up * (speed / 1.5f)) + -(transform.right * trackingSpeed);
-            } else if (player.transform.position.x - transform.position.x > trackingDeadzone) {
+        if (Vector2.Dot((player.transform.position - transform.position).normalized, transform.up) > 0.75f) {
+            float angle = Vector2.SignedAngle(player.transform.position - transform.position, transform.up);
+            if (angle > 5) {
                 rigidbody.velocity = (transform.up * (speed / 1.5f)) + (transform.right * trackingSpeed);
+            } else if (angle < -5) {
+                rigidbody.velocity = (transform.up * (speed / 1.5f)) - (transform.right * trackingSpeed);
             } else {
                 rigidbody.velocity = transform.up * speed;
             }
@@ -35,8 +36,9 @@ public class Ram : Entity {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject == player.gameObject) {
-            player.Hit(1);
+        Entity entity = collision.gameObject.GetComponent<Entity>();
+        if (entity != null) {
+            entity.Hit(1);
             Hit(maxHealth);
         }
     }

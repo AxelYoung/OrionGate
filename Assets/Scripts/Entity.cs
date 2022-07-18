@@ -7,11 +7,11 @@ public class Entity : MonoBehaviour, ITeleportable {
     public int maxHealth;
     public int currentHealth;
 
-    public GameObject destroyParticles;
-
     float hitAnimationLength = 0.1f;
 
     SpriteRenderer renderer;
+
+    bool dead = false;
 
     public virtual void Start() {
         currentHealth = maxHealth;
@@ -21,9 +21,11 @@ public class Entity : MonoBehaviour, ITeleportable {
     public virtual void Hit(int damageAmount) {
         currentHealth -= damageAmount;
         if (currentHealth <= 0) {
-            Destroy(gameObject);
-            Explode();
-            //GameObject particles = Instantiate(destroyParticles, transform.position, Quaternion.identity);
+            if (!dead) {
+                Destroy(gameObject);
+                Explode();
+                dead = true;
+            }
         } else {
             StartCoroutine(HitAnimation());
         }
