@@ -223,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &258081293
 Transform:
   m_ObjectHideFlags: 0
@@ -680,7 +680,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   currentHealth: 0
-  destroyParticles: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
   moveSpeed: 8
   bulletPrefab: {fileID: 3212775835760928640, guid: 5dba852ba26287d439d36039fb891beb, type: 3}
   fireRate: 0.15

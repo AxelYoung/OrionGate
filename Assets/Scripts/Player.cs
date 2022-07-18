@@ -7,9 +7,9 @@ public class Player : Entity {
 
     public float moveSpeed;
 
-    Vector2 moveDirection;
+    [System.NonSerialized] public Vector2 moveDirection;
     Vector2 targetVelocity;
-    Rigidbody2D rigidbody;
+    [System.NonSerialized] public Rigidbody2D rigidbody;
 
     public GameObject bulletPrefab;
     public float fireRate;
@@ -35,7 +35,7 @@ public class Player : Entity {
     }
 
     void Movement() {
-        moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveDirection = Vector2.ClampMagnitude(moveDirection, 1);
         targetVelocity = moveDirection * moveSpeed;
 
