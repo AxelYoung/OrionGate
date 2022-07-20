@@ -39,12 +39,16 @@ public class Entity : MonoBehaviour, ITeleportable {
     }
 
     Sprite hitSprite(Sprite currentSprite) {
-        Texture2D currentTexture = currentSprite.texture;
-        Texture2D newTexture = new Texture2D(currentTexture.width, currentTexture.height, TextureFormat.RGBA32, 0, false);
+        Texture2D fullTexture = currentSprite.texture;
+        Color[] pixels = fullTexture.GetPixels((int)currentSprite.rect.x, (int)currentSprite.rect.y, (int)currentSprite.rect.width, (int)currentSprite.rect.height, 0);
+        Texture2D spriteTexture = new Texture2D((int)currentSprite.rect.width, (int)currentSprite.rect.height, TextureFormat.RGBA32, 0, false);
+        spriteTexture.SetPixels(pixels);
+        spriteTexture.Apply();
+        Texture2D newTexture = new Texture2D(spriteTexture.width, spriteTexture.height, TextureFormat.RGBA32, 0, false);
         newTexture.filterMode = FilterMode.Point;
-        for (int x = 0; x < currentTexture.width; x++) {
-            for (int y = 0; y < currentTexture.height; y++) {
-                if (currentTexture.GetPixel(x, y).a != 0) {
+        for (int x = 0; x < spriteTexture.width; x++) {
+            for (int y = 0; y < spriteTexture.height; y++) {
+                if (spriteTexture.GetPixel(x, y).a != 0) {
                     newTexture.SetPixel(x, y, Color.HSVToRGB(0, 0, 0.9f));
                 } else {
                     newTexture.SetPixel(x, y, Color.clear);
@@ -53,12 +57,10 @@ public class Entity : MonoBehaviour, ITeleportable {
         }
         newTexture.Apply();
         Sprite sprite = Sprite.Create(newTexture, new Rect(0.0f, 0.0f, newTexture.width, newTexture.height), new Vector2(0.5f, 0.5f), 8);
-        print(currentSprite.pivot);
-        print(sprite.pivot);
         return sprite;
     }
 
-    bool teleportable = true;
+    public bool teleportable = true;
     public bool Teleportable {
         get {
             return teleportable;

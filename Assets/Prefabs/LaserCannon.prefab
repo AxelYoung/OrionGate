@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8460367325993859528}
   - component: {fileID: 8460367325993859531}
   - component: {fileID: 5382828984130872541}
+  - component: {fileID: 7351446136152991064}
   m_Layer: 8
   m_Name: LaserCannon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,8 +132,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.625}
+  m_Size: {x: 1.3, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7351446136152991064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460367325993859530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed8ef5d8898dcb4a8e5e8cb632727a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
+  teleportable: 0
 --- !u!1 &8460367327615267491
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8460367327615267491}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 16.5, z: 0}
+  m_LocalPosition: {x: 0, y: 16.575, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

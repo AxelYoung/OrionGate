@@ -46,12 +46,12 @@ public class Laser : MonoBehaviour {
                     }
                 } else {
                     renderer.size = new Vector2(renderer.size.x, 100);
-                    transform.localPosition = new Vector2(0, renderer.size.y / 2f);
+                    transform.localPosition = new Vector2(0, (renderer.size.y / 2f) + 0.3f);
                     if (laserInstance != null) { Destroy(laserInstance); }
                 }
             } else {
                 renderer.size = new Vector2(renderer.size.x, 100);
-                transform.localPosition = new Vector2(0, renderer.size.y / 2f);
+                transform.localPosition = new Vector2(0, (renderer.size.y / 2f) + 0.3f);
                 if (laserInstance != null) { Destroy(laserInstance); }
             }
         }

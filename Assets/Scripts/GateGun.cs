@@ -18,7 +18,12 @@ public class GateGun : MonoBehaviour {
     public Camera displayCamera;
     public Camera renderCamera;
 
+    public GameObject cursor;
+
+    void Start() => Cursor.visible = false;
+
     void Update() {
+        cursor.transform.position = MouseToWorldSpace();
         if (canUse) {
             if (Input.GetKeyDown(KeyCode.Mouse0)) {
                 leftGatePosition = MouseToWorldSpace();
