@@ -33,9 +33,16 @@ public class Entity : MonoBehaviour, ITeleportable {
 
     IEnumerator HitAnimation() {
         Sprite currentSprite = renderer.sprite;
+        Animator animator = GetComponent<Animator>();
+        bool initAnimState = false;
+        if (animator != null) {
+            initAnimState = animator.enabled;
+            if (animator != null && initAnimState) animator.enabled = false;
+        }
         renderer.sprite = hitSprite(currentSprite);
         yield return new WaitForSeconds(hitAnimationLength);
         renderer.sprite = currentSprite;
+        if (animator != null && initAnimState) animator.enabled = true;
     }
 
     Sprite hitSprite(Sprite currentSprite) {
@@ -73,16 +80,21 @@ public class Entity : MonoBehaviour, ITeleportable {
     void Explode() {
         GameObject explosion = new GameObject("Explosion");
         explosion.transform.position = transform.position;
-        Texture2D texture = renderer.sprite.texture;
-        for (int x = 0; x < texture.width; x++) {
-            for (int y = 0; y < texture.height; y++) {
-                Color pixel = texture.GetPixel(x, y);
+        Texture2D fullTexture = renderer.sprite.texture;
+        Color[] pixels = fullTexture.GetPixels((int)renderer.sprite.rect.x, (int)renderer.sprite.rect.y, (int)renderer.sprite.rect.width, (int)renderer.sprite.rect.height, 0);
+        Texture2D spriteTexture = new Texture2D((int)renderer.sprite.rect.width, (int)renderer.sprite.rect.height, TextureFormat.RGBA32, 0, false);
+        spriteTexture.SetPixels(pixels);
+        spriteTexture.Apply();
+        for (int x = 0; x < spriteTexture.width; x++) {
+            for (int y = 0; y < spriteTexture.height; y++) {
+                Color pixel = spriteTexture.GetPixel(x, y);
                 if (pixel.a != 0) {
                     GenerateChunk(x, y, pixel, explosion.transform);
                 }
             }
         }
         explosion.transform.rotation = transform.rotation;
+        explosion.AddComponent<DependantParent>();
     }
 
     void GenerateChunk(float x, float y, Color color, Transform parent) {

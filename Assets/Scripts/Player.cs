@@ -14,6 +14,7 @@ public class Player : Entity {
     public GameObject bulletPrefab;
     public float fireRate;
     public Transform bulletSpawn;
+    public Transform bulletSpawnR;
 
     float bulletTimer;
 
@@ -49,6 +50,7 @@ public class Player : Entity {
             bulletTimer += Time.deltaTime;
             if (bulletTimer >= fireRate) {
                 Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+                Instantiate(bulletPrefab, bulletSpawnR.position, transform.rotation);
                 bulletTimer = 0f;
             }
         } else {

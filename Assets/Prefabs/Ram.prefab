@@ -102,10 +102,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 0
-  destroyParticles: {fileID: 4691926836348413404, guid: ef42f64da58ecc24dadd9dd8d0c70bb9, type: 3}
-  speed: 12
-  trackingSpeed: 3
-  trackingDeadzone: 0.25
+  teleportable: 1
+  speed: 20
+  trackingSpeed: 4
+  trackingDeadzone: 0.15
 --- !u!50 &7840058673953041872
 Rigidbody2D:
   serializedVersion: 4
