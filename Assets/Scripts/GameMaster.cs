@@ -10,7 +10,7 @@ public class GameMaster : MonoBehaviour {
 
     public Player player;
     public GateGun gateGun;
-    public WaveSpawner waveSpawner;
+    public WaveManager waveSpawner;
 
     public int volume;
 
@@ -43,7 +43,7 @@ public class GameMaster : MonoBehaviour {
     public void StartGame() {
         player.GetComponent<Animator>().enabled = false;
         player.canMove = true;
-        waveSpawner.StartSpawnLoop();
+        waveSpawner.StartWaves();
         gateGun.canUse = true;
     }
 
