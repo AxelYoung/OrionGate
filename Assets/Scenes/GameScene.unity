@@ -257,87 +257,77 @@ MonoBehaviour:
   laserPrefab: {fileID: 8460367325993859530, guid: ff0613b76df4d4a45b54bd6a913b8861, type: 3}
   waveEvents:
   - spawnEvents:
-    - type: 1
-      side: 0
-      location: 1
-      presetLocation: 0
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: 5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-    - type: 1
-      side: 2
-      location: 1
-      presetLocation: 0
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-    - type: 2
-      side: 1
-      location: 1
-      presetLocation: 3
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-    - type: 2
-      side: 0
-      location: 1
-      presetLocation: -3
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
     - type: 2
       side: 2
       location: 1
-      presetLocation: -5
-      delay: 0
-      waitForInitAnimation: 0
+      presetLocation: -8
+      delay: 5
+      waitForInitAnimation: 1
       loop:
         start: 0
         end: 0
         amount: 0
-    - type: 1
-      side: 1
-      location: 1
-      presetLocation: 0
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-    - type: 1
+    - type: 0
       side: 3
-      location: 1
+      location: 0
       presetLocation: 0
-      delay: 0
+      delay: 2
       waitForInitAnimation: 0
       loop:
         start: 0
         end: 0
         amount: 0
-    progressEvent: 1
+    - type: 0
+      side: 3
+      location: 0
+      presetLocation: 0
+      delay: 0.05
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+    - type: 3
+      side: 3
+      location: 0
+      presetLocation: 0
+      delay: 0
+      waitForInitAnimation: 0
+      loop:
+        start: 2
+        end: 3
+        amount: 30
+    - type: 0
+      side: 2
+      location: 0
+      presetLocation: 0
+      delay: 2
+      waitForInitAnimation: 0
+      loop:
+        start: 2
+        end: 3
+        amount: 30
+    - type: 0
+      side: 2
+      location: 0
+      presetLocation: 0
+      delay: 0.05
+      waitForInitAnimation: 0
+      loop:
+        start: 2
+        end: 3
+        amount: 30
+    - type: 3
+      side: 2
+      location: 0
+      presetLocation: 0
+      delay: 0
+      waitForInitAnimation: 0
+      loop:
+        start: 5
+        end: 6
+        amount: 30
+    progressEvent: 0
     time: 0
 --- !u!1001 &279338875
 PrefabInstance:
