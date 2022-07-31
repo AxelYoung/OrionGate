@@ -64,6 +64,9 @@ public class WaveManager : MonoBehaviour {
                     }
                 }
             }
+            if (waveEvent.progressEvent == ProgressEvent.Time) {
+                yield return new WaitForSeconds(waveEvent.time);
+            }
         }
     }
 

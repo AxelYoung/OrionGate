@@ -26,7 +26,7 @@ public class GateGun : MonoBehaviour {
         cursor.transform.position = MouseToWorldSpace();
         if (canUse) {
             if (Input.GetKeyDown(KeyCode.Mouse0)) {
-                leftGatePosition = MouseToWorldSpace();
+                leftGatePosition = MouseToWorldSpace(true);
                 leftGate.transform.position = leftGatePosition;
                 if (!leftGate.gameObject.activeSelf) leftGate.gameObject.SetActive(true);
             }
@@ -48,7 +48,7 @@ public class GateGun : MonoBehaviour {
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1)) {
-                rightGatePosition = MouseToWorldSpace();
+                rightGatePosition = MouseToWorldSpace(true);
                 rightGate.transform.position = rightGatePosition;
                 if (!rightGate.gameObject.activeSelf) rightGate.gameObject.SetActive(true);
             }
@@ -76,10 +76,11 @@ public class GateGun : MonoBehaviour {
         }
     }
 
-    Vector2 MouseToWorldSpace() {
-        Vector2 point;
+    Vector2 MouseToWorldSpace(bool bounded = false) {
+        Vector2 point = Vector2.zero;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(renderTexture.rectTransform, Input.mousePosition, null, out point);
         point /= 8;
+        if (bounded) point = new Vector2(point.x > 5.6f ? 5.6f : point.x < -5.6f ? -5.6f : point.x, point.y > 8.1f ? 8.1f : point.y < -8.1f ? -8.1f : point.y);
         return point;
     }
 }

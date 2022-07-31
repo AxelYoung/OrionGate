@@ -14,6 +14,7 @@ public class Asteroid : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         rigidbody.velocity = velocity / 5f;
-        rigidbody.velocity -= ((player.moveDirection * player.rigidbody.velocity.magnitude / player.moveSpeed)) * (velocity.magnitude);
+        rigidbody.velocity -= ((player.moveDirection * player.rigidbody.velocity.magnitude) / 10f) * (velocity.magnitude);
+        rigidbody.velocity = new Vector2((player.clampedX ? velocity.x / 5f : rigidbody.velocity.x), (player.clampedY ? velocity.y / 5f : rigidbody.velocity.y));
     }
 }

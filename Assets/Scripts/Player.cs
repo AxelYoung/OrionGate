@@ -19,9 +19,16 @@ public class Player : Entity {
     float bulletTimer;
 
     public Image hpBar;
-    public Sprite[] hpBarSprites;
 
     public bool canMove = false;
+
+    public bool clampedX;
+    float clampXNeg = -5.75f;
+    float clampXPos = 5.65f;
+    public bool clampedY;
+    float clampY = 8.2f;
+
+    bool left = false;
 
     public override void Start() {
         base.Start();
@@ -40,17 +47,22 @@ public class Player : Entity {
         moveDirection = Vector2.ClampMagnitude(moveDirection, 1);
         targetVelocity = moveDirection * moveSpeed;
 
-        rigidbody.velocity = targetVelocity;
+        Vector3 unclampedPos = transform.position;
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, clampXNeg, clampXPos), Mathf.Clamp(transform.position.y, -clampY, clampY));
+        clampedX = transform.position.x == clampXNeg || transform.position.x == clampXPos;
+        clampedY = Mathf.Abs(transform.position.y) == clampY;
+    }
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -5.75f, 5.65f), Mathf.Clamp(transform.position.y, -8.2f, 8.2f));
+    void FixedUpdate() {
+        rigidbody.velocity += targetVelocity;
     }
 
     void Weapons() {
         if (Input.GetKey(KeyCode.Space)) {
             bulletTimer += Time.deltaTime;
             if (bulletTimer >= fireRate) {
-                Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
-                Instantiate(bulletPrefab, bulletSpawnR.position, transform.rotation);
+                Instantiate(bulletPrefab, left ? bulletSpawn.position : bulletSpawnR.position, transform.rotation);
+                left = !left;
                 bulletTimer = 0f;
             }
         } else {
@@ -60,7 +72,7 @@ public class Player : Entity {
 
     public override void Hit(int damageAmount) {
         base.Hit(damageAmount);
-        hpBar.sprite = hpBarSprites[currentHealth];
+        hpBar.transform.localScale = new Vector3((float)currentHealth / maxHealth, 1, 1);
         if (currentHealth <= 0) {
             GameMaster.instance.RestartGame();
         }

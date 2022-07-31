@@ -13,6 +13,8 @@ public class Entity : MonoBehaviour, ITeleportable {
 
     bool dead = false;
 
+    bool hit = false;
+
     public virtual void Start() {
         currentHealth = maxHealth;
         renderer = GetComponent<SpriteRenderer>();
@@ -32,17 +34,21 @@ public class Entity : MonoBehaviour, ITeleportable {
     }
 
     IEnumerator HitAnimation() {
-        Sprite currentSprite = renderer.sprite;
-        Animator animator = GetComponent<Animator>();
-        bool initAnimState = false;
-        if (animator != null) {
-            initAnimState = animator.enabled;
-            if (animator != null && initAnimState) animator.enabled = false;
+        if (!hit) {
+            Sprite currentSprite = renderer.sprite;
+            Animator animator = GetComponent<Animator>();
+            bool initAnimState = false;
+            if (animator != null) {
+                initAnimState = animator.enabled;
+                if (animator != null && initAnimState) animator.enabled = false;
+            }
+            renderer.sprite = hitSprite(currentSprite);
+            hit = true;
+            yield return new WaitForSeconds(hitAnimationLength);
+            hit = false;
+            renderer.sprite = currentSprite;
+            if (animator != null && initAnimState) animator.enabled = true;
         }
-        renderer.sprite = hitSprite(currentSprite);
-        yield return new WaitForSeconds(hitAnimationLength);
-        renderer.sprite = currentSprite;
-        if (animator != null && initAnimState) animator.enabled = true;
     }
 
     Sprite hitSprite(Sprite currentSprite) {
