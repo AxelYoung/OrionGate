@@ -28,7 +28,6 @@ public class Entity : MonoBehaviour, ITeleportable {
     }
 
     public virtual void Hit(int damageAmount) {
-        print("Hit attempt" + hitTime);
         if (hitTime >= hitDelay) {
             currentHealth -= damageAmount;
             if (currentHealth <= 0) {

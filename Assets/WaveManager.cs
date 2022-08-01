@@ -12,6 +12,7 @@ public class WaveManager : MonoBehaviour {
     public GameObject ramPrefab;
     public GameObject turretPrefab;
     public GameObject laserPrefab;
+    public GameObject multishotPrefab;
 
     public List<WaveEvent> waveEvents;
 
@@ -116,6 +117,10 @@ public class WaveManager : MonoBehaviour {
             case EventType.Laser:
                 entity = Instantiate(laserPrefab);
                 break;
+            case EventType.Multishot:
+                entity = Instantiate(multishotPrefab);
+                entity.GetComponent<Multishot>().dir = spawnEvent.side == Side.Up ? Vector2.down : spawnEvent.side == Side.Down ? Vector2.up : spawnEvent.side == Side.Right ? Vector2.left : Vector2.right;
+                break;
         }
         entity.transform.rotation = SideToRotation(spawnEvent.side);
         entity.transform.position = SpawnPosition(spawnEvent, entity);
@@ -142,7 +147,7 @@ public class WaveManager : MonoBehaviour {
                 position = new Vector2(-boundsX - halfHeight, offset);
                 break;
         }
-        if (spawnEvent.type != EventType.Ram) {
+        if (spawnEvent.type != EventType.Ram && spawnEvent.type != EventType.Multishot) {
             LerpingEntity lerpingEntity;
             lerpingEntity.entity = entity;
             lerpingEntity.startPos = position;
@@ -195,7 +200,8 @@ public enum EventType {
     Ram,
     Turret,
     Laser,
-    Loop
+    Loop,
+    Multishot
 }
 
 public enum Side {
