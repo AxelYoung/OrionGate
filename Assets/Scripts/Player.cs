@@ -35,7 +35,8 @@ public class Player : Entity {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
+    public override void Update() {
+        base.Update();
         if (canMove) {
             Movement();
             Weapons();

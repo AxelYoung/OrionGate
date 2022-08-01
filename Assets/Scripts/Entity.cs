@@ -15,21 +15,32 @@ public class Entity : MonoBehaviour, ITeleportable {
 
     bool hit = false;
 
+    float hitDelay = 0.2f;
+    float hitTime = 5f;
+
     public virtual void Start() {
         currentHealth = maxHealth;
         renderer = GetComponent<SpriteRenderer>();
     }
 
+    public virtual void Update() {
+        hitTime += Time.deltaTime;
+    }
+
     public virtual void Hit(int damageAmount) {
-        currentHealth -= damageAmount;
-        if (currentHealth <= 0) {
-            if (!dead) {
-                Destroy(gameObject);
-                Explode();
-                dead = true;
+        print("Hit attempt" + hitTime);
+        if (hitTime >= hitDelay) {
+            currentHealth -= damageAmount;
+            if (currentHealth <= 0) {
+                if (!dead) {
+                    Destroy(gameObject);
+                    Explode();
+                    dead = true;
+                }
+            } else {
+                StartCoroutine(HitAnimation());
             }
-        } else {
-            StartCoroutine(HitAnimation());
+            hitTime = 0f;
         }
     }
 
@@ -95,7 +106,8 @@ public class Entity : MonoBehaviour, ITeleportable {
             for (int y = 0; y < spriteTexture.height; y++) {
                 Color pixel = spriteTexture.GetPixel(x, y);
                 if (pixel.a != 0) {
-                    GenerateChunk(x, y, pixel, explosion.transform);
+                    GenerateChunk(x, y, pixel, explosion.transform, 0.1f);
+                    GenerateChunk(x, y, pixel, explosion.transform, 4f);
                 }
             }
         }
@@ -103,7 +115,7 @@ public class Entity : MonoBehaviour, ITeleportable {
         explosion.AddComponent<DependantParent>();
     }
 
-    void GenerateChunk(float x, float y, Color color, Transform parent) {
+    void GenerateChunk(float x, float y, Color color, Transform parent, float speed) {
         GameObject chunk = new GameObject();
         chunk.transform.parent = parent;
         chunk.transform.localPosition = new Vector3(x / 8f, y / 8f);
@@ -119,7 +131,7 @@ public class Entity : MonoBehaviour, ITeleportable {
         chunkRenderer.color = color;
 
         Rigidbody2D rigidbody = chunk.AddComponent<Rigidbody2D>();
-        rigidbody.velocity = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+        rigidbody.velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * speed;
         rigidbody.isKinematic = true;
 
         chunk.AddComponent<Chunk>();

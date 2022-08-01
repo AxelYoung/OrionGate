@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1645923857}
   - component: {fileID: 1645923854}
   - component: {fileID: 7051628426073078992}
+  - component: {fileID: -7982143055610144870}
   m_Layer: 8
   m_Name: Turret
   m_TagString: Untagged
@@ -126,10 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56ca4ac04771da4b861ca8ca4b57951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 10
   currentHealth: 0
   teleportable: 0
-  shotFrequency: 2
+  shotFrequency: 1
   bulletPrefab: {fileID: 211549109282861557, guid: 48a744865e9f41642a78881b9da9157b, type: 3}
 --- !u!95 &7051628426073078992
 Animator:
@@ -151,6 +152,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &-7982143055610144870
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4871182237545215817}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8904828419580297336
 GameObject:
   m_ObjectHideFlags: 0

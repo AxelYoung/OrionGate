@@ -16,7 +16,9 @@ public class Bullet : Entity {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
+
+    public override void Update() {
+        base.Update();
         lifetime += Time.deltaTime;
         if (lifetime >= lifespan) {
             Destroy(gameObject);

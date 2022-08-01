@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 8460367327615267503}
   - component: {fileID: 413023462}
   - component: {fileID: 413023461}
+  - component: {fileID: 5105766043672177209}
   m_Layer: 9
   m_Name: Laser_0
   m_TagString: Untagged
@@ -255,4 +256,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   laserPrefab: {fileID: 501402380419762941, guid: 467617f6b9fd2614e9c9983208012ef2, type: 3}
+  laserInstance: {fileID: 0}
   main: 1
+--- !u!50 &5105766043672177209
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460367327615267491}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 0

@@ -13,7 +13,7 @@ public class Laser : MonoBehaviour {
 
     public GameObject laserPrefab;
 
-    GameObject laserInstance;
+    public Laser laserInstance;
 
     public bool main = false;
 
@@ -38,7 +38,8 @@ public class Laser : MonoBehaviour {
                     transform.localPosition = new Vector2(0, renderer.size.y / 2f);
                     if (laserInstance == null) {
                         Vector2 position = gate.alternateGate.transform.position + (gate.alternateGate.transform.up * 20);
-                        laserInstance = Instantiate(laserPrefab, position, gate.alternateGate.transform.rotation);
+                        laserInstance = Instantiate(laserPrefab, position, gate.alternateGate.transform.rotation).GetComponent<Laser>();
+                        laserInstance.laserInstance = this;
                     } else {
                         Vector2 position = gate.alternateGate.transform.position + (gate.alternateGate.transform.up * 20);
                         laserInstance.transform.position = position;
@@ -47,13 +48,15 @@ public class Laser : MonoBehaviour {
                 } else {
                     renderer.size = new Vector2(renderer.size.x, 100);
                     transform.localPosition = new Vector2(0, (renderer.size.y / 2f) + 0.3f);
-                    if (laserInstance != null) { Destroy(laserInstance); }
+                    if (laserInstance != null) { Destroy(laserInstance.gameObject); }
                 }
             } else {
                 renderer.size = new Vector2(renderer.size.x, 100);
                 transform.localPosition = new Vector2(0, (renderer.size.y / 2f) + 0.3f);
-                if (laserInstance != null) { Destroy(laserInstance); }
+                if (laserInstance != null) { Destroy(laserInstance.gameObject); }
             }
+        } else {
+            if (laserInstance == null) { Destroy(gameObject); }
         }
     }
 
@@ -64,24 +67,10 @@ public class Laser : MonoBehaviour {
         }
     }
 
-    float hitDelay = 0.2f;
-    float totalHitTime = 0f;
-
     void OnTriggerStay2D(Collider2D other) {
         Entity entity = other.GetComponent<Entity>();
         if (entity != null) {
-            totalHitTime += Time.deltaTime;
-            if (totalHitTime >= hitDelay) {
-                entity.Hit(1);
-                totalHitTime = 0;
-            }
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other) {
-        Entity entity = other.GetComponent<Entity>();
-        if (entity != null) {
-            totalHitTime = 0;
+            entity.Hit(1);
         }
     }
 }

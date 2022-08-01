@@ -20,7 +20,8 @@ public class Ram : Entity {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update() {
+    public override void Update() {
+        base.Update();
         if (Vector2.Dot((player.transform.position - transform.position).normalized, transform.up) > 0.75f) {
             float angle = Vector2.SignedAngle(player.transform.position - transform.position, transform.up);
             if (angle > 5) {

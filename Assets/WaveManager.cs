@@ -15,9 +15,14 @@ public class WaveManager : MonoBehaviour {
 
     public List<WaveEvent> waveEvents;
 
-    List<LerpingEntity> lerpingEntities = new List<LerpingEntity>();
+    public List<LerpingEntity> lerpingEntities = new List<LerpingEntity>();
 
     float lerpTime = 1f;
+
+    public List<GameObject> instances = new List<GameObject>();
+    public List<bool> constistencies = new List<bool>();
+
+    List<GameObject> required = new List<GameObject>();
 
     void Start() {
         boundsX = viewport.bounds.extents.x;
@@ -37,6 +42,13 @@ public class WaveManager : MonoBehaviour {
                 lerpingEntities[i] = new LerpingEntity(lerpingEntities[i].entity, lerpingEntities[i].startPos, lerpingEntities[i].goalPos, time);
             }
         }
+        List<GameObject> trueRequired = new List<GameObject>();
+        for (int i = 0; i < required.Count; i++) {
+            if (required[i] != null) {
+                trueRequired.Add(required[i]);
+            }
+        }
+        required = trueRequired;
     }
 
     public void StartWaves() {
@@ -47,7 +59,10 @@ public class WaveManager : MonoBehaviour {
         foreach (WaveEvent waveEvent in waveEvents) {
             foreach (SpawnEvent spawnEvent in waveEvent.spawnEvents) {
                 if (spawnEvent.type != EventType.Loop) {
-                    SpawnEntity(spawnEvent);
+                    GameObject entity = SpawnEntity(spawnEvent);
+                    instances.Add(entity);
+                    constistencies.Add(spawnEvent.consistent);
+                    if (spawnEvent.required) { required.Add(entity); }
                     if (spawnEvent.waitForInitAnimation) {
                         yield return new WaitForSeconds(spawnEvent.type == EventType.Ram ? 0 : lerpTime);
                     }
@@ -55,7 +70,10 @@ public class WaveManager : MonoBehaviour {
                 } else {
                     for (int i = 0; i < spawnEvent.loop.amount; i++) {
                         for (int j = spawnEvent.loop.start; j < spawnEvent.loop.end; j++) {
-                            SpawnEntity(waveEvent.spawnEvents[j]);
+                            GameObject entity = SpawnEntity(waveEvent.spawnEvents[j]);
+                            instances.Add(entity);
+                            constistencies.Add(waveEvent.spawnEvents[j].consistent);
+                            if (waveEvent.spawnEvents[j].required) { required.Add(entity); }
                             if (waveEvent.spawnEvents[j].waitForInitAnimation) {
                                 yield return new WaitForSeconds(waveEvent.spawnEvents[j].type == EventType.Ram ? 0 : lerpTime);
                             }
@@ -66,11 +84,26 @@ public class WaveManager : MonoBehaviour {
             }
             if (waveEvent.progressEvent == ProgressEvent.Time) {
                 yield return new WaitForSeconds(waveEvent.time);
+                for (int i = 0; i < instances.Count; i++) {
+                    if (instances[i] != null) {
+                        if (!constistencies[i]) Destroy(instances[i]);
+                    }
+                }
+            } else if (waveEvent.progressEvent == ProgressEvent.Cleared) {
+                while (required.Count != 0) {
+                    yield return new WaitForEndOfFrame();
+                }
+                for (int i = 0; i < instances.Count; i++) {
+                    if (instances[i] != null) {
+                        if (!constistencies[i]) Destroy(instances[i]);
+                    }
+                }
+                yield return new WaitForSeconds(waveEvent.time);
             }
         }
     }
 
-    void SpawnEntity(SpawnEvent spawnEvent) {
+    GameObject SpawnEntity(SpawnEvent spawnEvent) {
         EventType entityType = spawnEvent.type;
         GameObject entity = null;
         switch (entityType) {
@@ -86,6 +119,7 @@ public class WaveManager : MonoBehaviour {
         }
         entity.transform.rotation = SideToRotation(spawnEvent.side);
         entity.transform.position = SpawnPosition(spawnEvent, entity);
+        return entity;
     }
 
     Vector3 SpawnPosition(SpawnEvent spawnEvent, GameObject entity) {
@@ -152,6 +186,9 @@ public struct SpawnEvent {
     public bool waitForInitAnimation;
 
     public Loop loop;
+
+    public bool consistent;
+    public bool required;
 }
 
 public enum EventType {
@@ -185,6 +222,7 @@ public struct Loop {
     public int amount;
 }
 
+[System.Serializable]
 public struct LerpingEntity {
     public GameObject entity;
     public Vector2 startPos;

@@ -20,13 +20,14 @@ public class Turret : Entity {
     }
 
     // Update is called once per frame
-    void Update() {
+    public override void Update() {
+        base.Update();
         barrel.up = player.transform.position - barrel.position;
     }
 
     IEnumerator Shoot() {
         yield return new WaitForSeconds(shotFrequency);
-        Instantiate(bulletPrefab, barrel.transform.position, barrel.transform.rotation);
+        Instantiate(bulletPrefab, barrel.transform.position + (barrel.transform.up), barrel.transform.rotation);
         StartCoroutine(Shoot());
     }
 }
