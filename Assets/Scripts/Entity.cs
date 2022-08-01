@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour, ITeleportable {
     float hitAnimationLength = 0.1f;
 
     SpriteRenderer renderer;
+    AudioSource audioSource;
 
     bool dead = false;
 
@@ -18,9 +19,13 @@ public class Entity : MonoBehaviour, ITeleportable {
     float hitDelay = 0.2f;
     float hitTime = 5f;
 
+    public AudioClip hitClip;
+    public GameObject audioObject;
+
     public virtual void Start() {
         currentHealth = maxHealth;
         renderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public virtual void Update() {
@@ -32,12 +37,17 @@ public class Entity : MonoBehaviour, ITeleportable {
             currentHealth -= damageAmount;
             if (currentHealth <= 0) {
                 if (!dead) {
+                    if (hitClip != null) {
+                        AudioObject au = Instantiate(audioObject).GetComponent<AudioObject>();
+                        au.Play(hitClip);
+                    }
                     Destroy(gameObject);
                     Explode();
                     dead = true;
                 }
             } else {
                 StartCoroutine(HitAnimation());
+                if (audioSource != null) audioSource.PlayOneShot(hitClip);
             }
             hitTime = 0f;
         }

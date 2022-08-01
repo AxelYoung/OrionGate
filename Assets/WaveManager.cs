@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour {
 
@@ -24,6 +25,8 @@ public class WaveManager : MonoBehaviour {
     public List<bool> constistencies = new List<bool>();
 
     List<GameObject> required = new List<GameObject>();
+
+    public GameObject win;
 
     void Start() {
         boundsX = viewport.bounds.extents.x;
@@ -102,6 +105,9 @@ public class WaveManager : MonoBehaviour {
                 yield return new WaitForSeconds(waveEvent.time);
             }
         }
+        win.SetActive(true);
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     GameObject SpawnEntity(SpawnEvent spawnEvent) {

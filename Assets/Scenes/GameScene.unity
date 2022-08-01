@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 171635422}
   - component: {fileID: 171635421}
-  - component: {fileID: 171635420}
   m_Layer: 8
   m_Name: Render Camera
   m_TagString: MainCamera
@@ -141,14 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &171635420
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171635418}
-  m_Enabled: 1
 --- !u!20 &171635421
 Camera:
   m_ObjectHideFlags: 0
@@ -257,177 +248,6 @@ MonoBehaviour:
   laserPrefab: {fileID: 8460367325993859530, guid: ff0613b76df4d4a45b54bd6a913b8861, type: 3}
   multishotPrefab: {fileID: 2353242860680107564, guid: dd4ef90bc5c96124a8993a142b69b8be, type: 3}
   waveEvents:
-  - spawnEvents:
-    - type: 2
-      side: 2
-      location: 1
-      presetLocation: 0.5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: -0.5
-      delay: 0
-      waitForInitAnimation: 1
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: -1.5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 2
-      location: 1
-      presetLocation: 1.5
-      delay: 0
-      waitForInitAnimation: 1
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: -2.5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 2
-      location: 1
-      presetLocation: 2.5
-      delay: 0
-      waitForInitAnimation: 1
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 2
-      location: 1
-      presetLocation: 3.5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: -3.5
-      delay: 0
-      waitForInitAnimation: 1
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: -4.5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 2
-      location: 1
-      presetLocation: 4.5
-      delay: 0
-      waitForInitAnimation: 1
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: -5.5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 2
-      location: 1
-      presetLocation: 5.5
-      delay: 0
-      waitForInitAnimation: 1
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 2
-      location: 1
-      presetLocation: 6.5
-      delay: 0
-      waitForInitAnimation: 0
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    - type: 2
-      side: 3
-      location: 1
-      presetLocation: -6.5
-      delay: 0
-      waitForInitAnimation: 1
-      loop:
-        start: 0
-        end: 0
-        amount: 0
-      consistent: 0
-      required: 0
-    progressEvent: 1
-    time: 5
   - spawnEvents:
     - type: 4
       side: 0
@@ -788,9 +608,316 @@ MonoBehaviour:
       required: 0
     progressEvent: 1
     time: 5
+  - spawnEvents:
+    - type: 2
+      side: 2
+      location: 1
+      presetLocation: 0.5
+      delay: 0
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -0.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -1.5
+      delay: 0
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 2
+      location: 1
+      presetLocation: 1.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -2.5
+      delay: 0
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 2
+      location: 1
+      presetLocation: 2.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 2
+      location: 1
+      presetLocation: 3.5
+      delay: 0
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -3.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -4.5
+      delay: 0
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 2
+      location: 1
+      presetLocation: 4.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -5.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -6.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -7.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 3
+      location: 1
+      presetLocation: -8.5
+      delay: 0
+      waitForInitAnimation: 1
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    progressEvent: 1
+    time: 5
+  - spawnEvents:
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: -5.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: -4.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: -3.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: -2.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: -1.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: -0.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: 0.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: 1.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: 2.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: 3.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    - type: 2
+      side: 0
+      location: 1
+      presetLocation: 4.5
+      delay: 0.1
+      waitForInitAnimation: 0
+      loop:
+        start: 0
+        end: 0
+        amount: 0
+      consistent: 0
+      required: 0
+    progressEvent: 1
+    time: 5
   lerpingEntities: []
   instances: []
   constistencies: 
+  win: {fileID: 999396402}
 --- !u!1001 &279338875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1210,6 +1337,7 @@ GameObject:
   - component: {fileID: 701006746}
   - component: {fileID: 701006745}
   - component: {fileID: 701006749}
+  - component: {fileID: 701006750}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1250,16 +1378,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 13
   currentHealth: 0
+  hitClip: {fileID: 8300000, guid: 814dfdc035c654d4bbaa10e9633fba20, type: 3}
+  audioObject: {fileID: 635576913521946314, guid: 90054f5e09ed2494c8a5ae7a98cc662b, type: 3}
   teleportable: 1
   moveSpeed: 0.7
   bulletPrefab: {fileID: 3212775835760928640, guid: 5dba852ba26287d439d36039fb891beb, type: 3}
-  fireRate: 0.05
+  fireRate: 0.1
   bulletSpawn: {fileID: 598147330}
   bulletSpawnR: {fileID: 601333620}
   hpBar: {fileID: 977766196}
   canMove: 0
   clampedX: 0
   clampedY: 0
+  shootSound: {fileID: 8300000, guid: 3a868413904e71749b8baa590d6fae8a, type: 3}
 --- !u!60 &701006746
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1406,6 +1537,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &701006750
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701006743}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &751547842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1801,8 @@ GameObject:
   m_Component:
   - component: {fileID: 756931924}
   - component: {fileID: 756931925}
+  - component: {fileID: 756931926}
+  - component: {fileID: 756931927}
   m_Layer: 0
   m_Name: Game Master
   m_TagString: Untagged
@@ -1611,7 +1840,7 @@ MonoBehaviour:
   player: {fileID: 701006745}
   gateGun: {fileID: 1111033221}
   waveSpawner: {fileID: 258081295}
-  volume: 0
+  volume: 10
   activeThemeIndex: 0
   themes:
   - {r: 1, g: 1, b: 1, a: 1}
@@ -1620,6 +1849,110 @@ MonoBehaviour:
   - {r: 1, g: 0.8759048, b: 0, a: 1}
   renderTexture: {fileID: 1016947002}
   rainbowSpeedMultipler: 0.15
+--- !u!82 &756931926
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756931923}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 52abc8683de3b26499d7c3df7b999cfd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 0
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!81 &756931927
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756931923}
+  m_Enabled: 1
 --- !u!1 &977766194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +2028,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977766194}
+  m_CullTransparentMesh: 1
+--- !u!1 &999396402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 999396403}
+  - component: {fileID: 999396405}
+  - component: {fileID: 999396404}
+  m_Layer: 8
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &999396403
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999396402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1953783235}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 27, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &999396404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999396402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4d2d9123d53b1d6479c6e9d767ab3b5c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &999396405
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999396402}
   m_CullTransparentMesh: 1
 --- !u!1 &1016947000
 GameObject:
@@ -2546,6 +2955,7 @@ RectTransform:
   - {fileID: 1066069356}
   - {fileID: 290627968}
   - {fileID: 342123908}
+  - {fileID: 999396403}
   m_Father: {fileID: 1089667719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

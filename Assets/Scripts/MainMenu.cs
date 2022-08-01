@@ -103,7 +103,7 @@ public class MainMenu : MonoBehaviour {
                             case 0:
                                 currentVolume += horizontal > 0 ? 1 : -1;
                                 currentVolume = currentVolume > 10 ? 10 : currentVolume < 0 ? 0 : currentVolume;
-                                GameMaster.instance.volume = currentVolume;
+                                AudioListener.volume = currentVolume / 10f;
                                 volume.sprite = volumeSprites[currentVolume + (volumeSprites.Length / 2)];
                                 break;
                             case 1:

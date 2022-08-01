@@ -38,6 +38,7 @@ public class GameMaster : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
     }
 
     public void StartGame() {
@@ -48,7 +49,7 @@ public class GameMaster : MonoBehaviour {
     }
 
     public void RestartGame() {
-        Invoke("Reload", 3);
+        Invoke("Reload", 1.5f);
     }
 
     void Reload() {

@@ -69,7 +69,7 @@ public class GateGun : MonoBehaviour {
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.C)) {
+            if (Input.GetKeyDown(KeyCode.Mouse2)) {
                 if (leftGate.gameObject.activeSelf) leftGate.gameObject.SetActive(false);
                 if (rightGate.gameObject.activeSelf) rightGate.gameObject.SetActive(false);
             }

@@ -30,9 +30,14 @@ public class Player : Entity {
 
     bool left = false;
 
+    public AudioClip shootSound;
+
+    AudioSource audioSource;
+
     public override void Start() {
         base.Start();
         rigidbody = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public override void Update() {
@@ -63,6 +68,7 @@ public class Player : Entity {
             bulletTimer += Time.deltaTime;
             if (bulletTimer >= fireRate) {
                 Instantiate(bulletPrefab, left ? bulletSpawn.position : bulletSpawnR.position, transform.rotation);
+                audioSource.PlayOneShot(shootSound);
                 left = !left;
                 bulletTimer = 0f;
             }
